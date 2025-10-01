@@ -1,6 +1,70 @@
 -- Enable the vector extension for Supabase
 CREATE EXTENSION IF NOT EXISTS vector;
 
+-- ============================================
+-- CONTACT FORM TABLES
+-- ============================================
+
+-- Create leads table for contact form submissions
+CREATE TABLE IF NOT EXISTS leads (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  business TEXT,
+  interest TEXT,
+  challenge TEXT,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Create index for faster email lookups
+CREATE INDEX IF NOT EXISTS leads_email_idx ON leads(email);
+CREATE INDEX IF NOT EXISTS leads_created_at_idx ON leads(created_at DESC);
+
+-- Enable Row Level Security on leads table
+ALTER TABLE leads ENABLE ROW LEVEL SECURITY;
+
+-- Create policy to allow anonymous inserts (for contact form)
+CREATE POLICY "Allow anonymous inserts on leads" ON leads
+  FOR INSERT
+  TO anon
+  WITH CHECK (true);
+
+-- Create policy to allow authenticated users to read (for admin)
+CREATE POLICY "Allow authenticated users to read leads" ON leads
+  FOR SELECT
+  TO authenticated
+  USING (true);
+
+-- Create newsletter_subscriptions table
+CREATE TABLE IF NOT EXISTS newsletter_subscriptions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT NOT NULL UNIQUE,
+  subscribed_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Create index for faster email lookups
+CREATE INDEX IF NOT EXISTS newsletter_email_idx ON newsletter_subscriptions(email);
+
+-- Enable Row Level Security on newsletter_subscriptions
+ALTER TABLE newsletter_subscriptions ENABLE ROW LEVEL SECURITY;
+
+-- Create policy to allow anonymous inserts (for newsletter signup)
+CREATE POLICY "Allow anonymous inserts on newsletter" ON newsletter_subscriptions
+  FOR INSERT
+  TO anon
+  WITH CHECK (true);
+
+-- Create policy to allow authenticated users to read (for admin)
+CREATE POLICY "Allow authenticated users to read newsletter" ON newsletter_subscriptions
+  FOR SELECT
+  TO authenticated
+  USING (true);
+
+-- ============================================
+-- CHATBOT / RAG TABLES
+-- ============================================
+
 -- Create knowledge_base table for RAG system
 CREATE TABLE IF NOT EXISTS knowledge_base (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
