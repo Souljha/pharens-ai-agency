@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Lora', serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  .purple-accent {
+    @apply text-primary;
+  }
+  
+  .bg-purple-accent {
+    @apply bg-primary;
+  }
+  
+  .border-purple-accent {
+    @apply border-primary;
+  }
+  
+  .ring-purple-accent {
+    @apply ring-primary;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg font-bold font-sans hover:bg-secondary-dark transition-all duration-300 shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-bold font-sans hover:bg-gray-300 transition-colors;
+  }
+  
+  .card {
+    @apply bg-white p-8 rounded-2xl shadow-lg border border-gray-200;
+  }
+  
+  .card-hover {
+    @apply transition-transform hover:scale-105 duration-300;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
