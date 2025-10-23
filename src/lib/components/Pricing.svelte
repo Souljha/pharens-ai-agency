@@ -76,6 +76,7 @@
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Targeted Ad Campaigns</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI-Powered Optimization</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Local SEO Dominance</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (100 calls/mo)</li>
               <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Automated Booking Systems</li>
               <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Transparent ROI Reporting</li>
             </ul>
@@ -93,6 +94,7 @@
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Targeted Ad Campaigns</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI-Powered Optimization</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Local SEO Dominance</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (500 calls/mo)</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Automated Booking Systems</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Transparent ROI Reporting</li>
             </ul>
@@ -105,6 +107,7 @@
             <p class="mt-2 text-md text-gray-500">For market leaders seeking aggressive expansion.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>All Professional Features, plus:</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (2000 calls/mo)</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Multi-Platform Strategy</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced Analytics & Insights</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Dedicated Account Manager</li>
@@ -131,6 +134,7 @@
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Full-Funnel Ad Campaigns</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI-Powered Creative Suite</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (100 calls/mo)</li>
               <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Dynamic Catalog Optimization</li>
               <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Advanced Retargeting</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>E-commerce Analytics</li>
@@ -148,6 +152,7 @@
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Full-Funnel Ad Campaigns</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI-Powered Creative Suite</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (500 calls/mo)</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Dynamic Catalog Optimization</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced Retargeting</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>E-commerce Analytics</li>
@@ -161,6 +166,7 @@
             <p class="mt-2 text-md text-gray-500">For established brands aiming for market leadership.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>All Accelerator Features, plus:</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (2000 calls/mo)</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Omnichannel Ad Strategy</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Conversion Rate Optimization</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Priority Support</li>

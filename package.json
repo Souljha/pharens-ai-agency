@@ -27,6 +27,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.46.1",
     "@tailwindcss/typography": "^0.5.16",
+    "@vapi-ai/web": "^2.5.0",
     "axios": "^1.11.0",
     "uuid": "^11.1.0"
   }

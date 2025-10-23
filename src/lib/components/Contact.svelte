@@ -1,8 +1,11 @@
 <script>
   import { onMount } from 'svelte';
-  import { formSubmitting, formSuccess, formError, resetFormState } from '$lib/stores/ui.js';
+  import { formSubmitting, formSuccess, formError, resetFormState, voiceCallActive } from '$lib/stores/ui.js';
   import { submitContactForm } from '$lib/utils/supabase.js';
   import { trackFormSubmission, trackServiceInterest } from '$lib/utils/analytics.js';
+  import VoiceAgent from '$lib/components/VoiceAgent.svelte';
+  import { startCall } from '$lib/utils/vapi.js';
+  import { PUBLIC_VAPI_ASSISTANT_ID } from '$env/static/public';
   
   let contactElement;
   let isVisible = false;
@@ -15,6 +18,9 @@
     service_interest: '',
     challenge: ''
   };
+
+  let showVoiceAgent = false;
+  let autoCallTriggered = false;
   
   async function handleSubmit() {
     try {
@@ -34,6 +40,12 @@
       if (success) {
         formSuccess.set(true);
         resetForm();
+
+        // Trigger automatic voice call after successful submission
+        setTimeout(() => {
+          triggerAutoCall();
+        }, 2000); // Wait 2 seconds before initiating call
+
         setTimeout(() => formSuccess.set(false), 6000);
       } else {
         formError.set(error || 'Failed to submit form. Please try again.');
@@ -56,6 +68,32 @@
       service_interest: '',
       challenge: ''
     };
+  }
+
+  async function triggerAutoCall() {
+    if (autoCallTriggered || $voiceCallActive) {
+      return; // Prevent duplicate calls
+    }
+
+    try {
+      autoCallTriggered = true;
+      showVoiceAgent = true;
+
+      // Wait a moment for the VoiceAgent component to render
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Start the call with custom metadata about the form submission
+      await startCall(PUBLIC_VAPI_ASSISTANT_ID, {
+        metadata: {
+          trigger: 'contact_form_submission',
+          formType: 'contact',
+          timestamp: new Date().toISOString()
+        }
+      });
+    } catch (error) {
+      console.error('Failed to trigger auto call:', error);
+      // Don't show error to user as this is an enhancement feature
+    }
   }
   
   onMount(() => {
@@ -162,6 +200,9 @@
           <div class="mt-6 p-4 bg-green-100 border border-green-300 text-green-800 rounded-lg animate-fade-in">
             <p class="font-bold">Thank you for your interest!</p>
             <p>We've received your information and will be in touch within 24 business hours to schedule your free consultation.</p>
+            {#if showVoiceAgent}
+              <p class="mt-2 font-semibold text-primary">Our AI agent is ready to talk with you now!</p>
+            {/if}
           </div>
         {/if}
         
@@ -172,6 +213,39 @@
           </div>
         {/if}
       </form>
+
+      <!-- AI Voice Agent Section -->
+      {#if showVoiceAgent}
+        <div class="mt-8 animate-fade-in">
+          <div class="bg-gradient-to-br from-primary/5 to-secondary-light/5 p-6 rounded-2xl border-2 border-primary/20">
+            <div class="text-center mb-4">
+              <h3 class="text-2xl font-bold text-gray-900 font-sans">
+                Talk to Our AI Agent Now
+              </h3>
+              <p class="text-gray-600 mt-2">
+                Get instant answers about our services, pricing, and how we can help your business grow.
+              </p>
+            </div>
+            <VoiceAgent />
+          </div>
+        </div>
+      {/if}
+
+      <!-- Manual Voice Agent Trigger (always available) -->
+      {#if !showVoiceAgent && !$formSuccess}
+        <div class="mt-8 text-center animate-fade-in">
+          <p class="text-gray-600 mb-4">Prefer to talk right away?</p>
+          <button
+            on:click={() => showVoiceAgent = true}
+            class="inline-flex items-center gap-2 px-6 py-3 bg-secondary-light hover:bg-primary text-white font-bold rounded-lg transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            Talk to Our AI Agent
+          </button>
+        </div>
+      {/if}
     </div>
   </div>
 </section>

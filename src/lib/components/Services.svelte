@@ -41,7 +41,7 @@
       </p>
     </div>
 
-    <div class="mt-16 grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 max-w-7xl mx-auto">
       <!-- Medical Aesthetic Clinics -->
       <div class="card card-hover {isVisible ? 'animate-fade-in' : 'opacity-0'}" style="animation-delay: 0.3s;">
         <div class="text-center">
@@ -139,6 +139,58 @@
             class="inline-flex items-center gap-2 font-bold text-primary hover:text-secondary-dark transition-colors text-lg"
           >
             Learn More & See Pricing
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- AI Voice Agent -->
+      <div class="card card-hover {isVisible ? 'animate-fade-in' : 'opacity-0'}" style="animation-delay: 0.9s;">
+        <div class="text-center">
+          <!-- Icon -->
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 font-sans mb-4">
+            AI Voice Agent
+          </h3>
+          <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+            Never miss a call again. Our AI-powered voice agent handles inquiries, books appointments, and qualifies leads 24/7.
+          </p>
+
+          <!-- Features -->
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center justify-center gap-3 text-gray-700">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>24/7 Availability</span>
+            </div>
+            <div class="flex items-center justify-center gap-3 text-gray-700">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Automated Appointment Booking</span>
+            </div>
+            <div class="flex items-center justify-center gap-3 text-gray-700">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Intelligent Lead Qualification</span>
+            </div>
+          </div>
+
+          <a
+            href="#contact"
+            on:click={() => handleServiceClick('voiceagent')}
+            class="inline-flex items-center gap-2 font-bold text-primary hover:text-secondary-dark transition-colors text-lg"
+          >
+            Try It Now
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>

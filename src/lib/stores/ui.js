@@ -60,3 +60,39 @@ export function addChatMessage(message) {
 export function setChatbotLoading(loading) {
   chatbotLoading.set(loading);
 }
+
+// Voice Agent state
+export const voiceCallActive = writable(false);
+export const voiceCallStatus = writable('idle'); // 'idle', 'connecting', 'active', 'ending'
+export const voiceCallDuration = writable(0);
+export const voiceCallMuted = writable(false);
+export const voiceCallError = writable(null);
+
+// Functions to manage voice agent state
+export function setCallActive(active) {
+  voiceCallActive.set(active);
+}
+
+export function setCallStatus(status) {
+  voiceCallStatus.set(status);
+}
+
+export function setCallDuration(duration) {
+  voiceCallDuration.set(duration);
+}
+
+export function setCallMuted(muted) {
+  voiceCallMuted.set(muted);
+}
+
+export function setCallError(error) {
+  voiceCallError.set(error);
+}
+
+export function resetCallState() {
+  voiceCallActive.set(false);
+  voiceCallStatus.set('idle');
+  voiceCallDuration.set(0);
+  voiceCallMuted.set(false);
+  voiceCallError.set(null);
+}
