@@ -41,12 +41,8 @@ export async function startCall(assistantId, options = {}) {
     throw new Error('Vapi client not initialized. Call initializeVapi() first.');
   }
 
-  const callConfig = {
-    assistantId,
-    ...options,
-  };
-
-  return vapiInstance.start(callConfig);
+  // For Vapi SDK v2.5.0, pass assistantId directly as first parameter
+  return vapiInstance.start(assistantId);
 }
 
 /**
