@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { VAPI_PRIVATE_API_KEY } from '$env/static/private';
+import { VAPI_PRIVATE_API_KEY, VAPI_PHONE_NUMBER_ID } from '$env/static/private';
 import { PUBLIC_VAPI_ASSISTANT_ID } from '$env/static/public';
 
 /**
@@ -26,6 +26,14 @@ export async function POST({ request }) {
       );
     }
 
+    if (!VAPI_PHONE_NUMBER_ID) {
+      console.error('VAPI_PHONE_NUMBER_ID is not configured');
+      return json(
+        { success: false, error: 'Phone number configuration missing' },
+        { status: 500 }
+      );
+    }
+
     // Make outbound call request to Vapi API
     const vapiResponse = await fetch('https://api.vapi.ai/call/phone', {
       method: 'POST',
@@ -35,8 +43,9 @@ export async function POST({ request }) {
       },
       body: JSON.stringify({
         assistantId: PUBLIC_VAPI_ASSISTANT_ID,
+        phoneNumberId: VAPI_PHONE_NUMBER_ID, // Your Twilio phone number to call FROM
         customer: {
-          number: phoneNumber, // Customer's phone number to call
+          number: phoneNumber, // Customer's phone number to call TO
           name: customerName || 'Customer',
         },
         metadata: {
