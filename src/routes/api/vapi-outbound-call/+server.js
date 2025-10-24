@@ -35,8 +35,8 @@ export async function POST({ request }) {
       },
       body: JSON.stringify({
         assistantId: PUBLIC_VAPI_ASSISTANT_ID,
-        phoneNumber: phoneNumber, // Direct field - the customer's phone number to call
         customer: {
+          number: phoneNumber, // Customer's phone number to call
           name: customerName || 'Customer',
         },
         metadata: {
