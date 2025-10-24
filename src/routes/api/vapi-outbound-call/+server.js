@@ -35,11 +35,10 @@ export async function POST({ request }) {
       },
       body: JSON.stringify({
         assistantId: PUBLIC_VAPI_ASSISTANT_ID,
+        phoneNumber: phoneNumber, // Direct field - the customer's phone number to call
         customer: {
-          number: phoneNumber,
           name: customerName || 'Customer',
         },
-        phoneNumberId: null, // Vapi will use their default number
         metadata: {
           source: 'contact_form',
           timestamp: new Date().toISOString(),
