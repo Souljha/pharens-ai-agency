@@ -6,10 +6,11 @@
   import VoiceAgent from '$lib/components/VoiceAgent.svelte';
   import { startCall } from '$lib/utils/vapi.js';
   import { PUBLIC_VAPI_ASSISTANT_ID } from '$env/static/public';
-  
+  import { formatPhoneToE164, isValidPhoneNumber, getPhoneValidationError } from '$lib/utils/phoneValidation.js';
+
   let contactElement;
   let isVisible = false;
-  
+
   let formData = {
     name: '',
     email: '',
@@ -21,11 +22,23 @@
 
   let showVoiceAgent = false;
   let autoCallTriggered = false;
+  let outboundCallInitiated = false;
+  let phoneValidationError = null;
   
   async function handleSubmit() {
     try {
       formSubmitting.set(true);
       formError.set(null);
+      phoneValidationError = null;
+
+      // Validate phone number before submission
+      const phoneError = getPhoneValidationError(formData.phone);
+      if (phoneError) {
+        phoneValidationError = phoneError;
+        formError.set(phoneError);
+        formSubmitting.set(false);
+        return;
+      }
 
       // Track service interest if selected
       if (formData.service_interest) {
@@ -39,14 +52,20 @@
 
       if (success) {
         formSuccess.set(true);
+
+        // Store form data before resetting (needed for outbound call)
+        const submittedFormData = { ...formData };
         resetForm();
 
-        // Trigger automatic voice call after successful submission
+        // Trigger automatic outbound phone call after successful submission
         setTimeout(() => {
-          triggerAutoCall();
+          triggerOutboundCall(submittedFormData);
         }, 2000); // Wait 2 seconds before initiating call
 
-        setTimeout(() => formSuccess.set(false), 6000);
+        setTimeout(() => {
+          formSuccess.set(false);
+          outboundCallInitiated = false;
+        }, 10000);
       } else {
         formError.set(error || 'Failed to submit form. Please try again.');
       }
@@ -70,30 +89,54 @@
     };
   }
 
-  async function triggerAutoCall() {
-    if (autoCallTriggered || $voiceCallActive) {
+  async function triggerOutboundCall(submittedData) {
+    if (autoCallTriggered) {
       return; // Prevent duplicate calls
     }
 
     try {
       autoCallTriggered = true;
-      showVoiceAgent = true;
+      outboundCallInitiated = true;
 
-      // Wait a moment for the VoiceAgent component to render
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Format phone number to E.164 format
+      const formattedPhone = formatPhoneToE164(submittedData.phone);
 
-      // Start the call with custom metadata about the form submission
-      await startCall(PUBLIC_VAPI_ASSISTANT_ID, {
-        metadata: {
-          trigger: 'contact_form_submission',
-          formType: 'contact',
-          timestamp: new Date().toISOString()
-        }
+      console.log('Initiating outbound call to:', formattedPhone);
+
+      // Call the serverless function to trigger outbound call
+      const response = await fetch('/api/vapi-outbound-call', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phoneNumber: formattedPhone,
+          customerName: submittedData.name,
+          metadata: {
+            email: submittedData.email,
+            business: submittedData.business_name,
+            interest: submittedData.service_interest,
+            challenge: submittedData.challenge,
+            timestamp: new Date().toISOString(),
+          },
+        }),
       });
+
+      const result = await response.json();
+
+      if (result.success) {
+        console.log('Outbound call initiated successfully:', result.data);
+      } else {
+        console.error('Failed to initiate outbound call:', result.error);
+        // Don't show error to user - they can still use web-based call
+      }
     } catch (error) {
-      console.error('Failed to trigger auto call:', error);
-      // Don't show error to user as this is an enhancement feature
+      console.error('Error triggering outbound call:', error);
+      // Don't show error to user - they can still use web-based call
     }
+
+    // Show the web-based VoiceAgent as a backup option
+    showVoiceAgent = true;
   }
   
   onMount(() => {
@@ -198,10 +241,21 @@
         
         {#if $formSuccess}
           <div class="mt-6 p-4 bg-green-100 border border-green-300 text-green-800 rounded-lg animate-fade-in">
-            <p class="font-bold">Thank you for your interest!</p>
+            <p class="font-bold">✅ Thank you for your interest!</p>
             <p>We've received your information and will be in touch within 24 business hours to schedule your free consultation.</p>
+            {#if outboundCallInitiated}
+              <div class="mt-3 p-3 bg-primary/10 border border-primary/30 rounded-lg">
+                <p class="font-semibold text-primary flex items-center gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                  📞 Our AI Agent is calling you now!
+                </p>
+                <p class="text-sm mt-1">Please answer your phone to speak with our AI assistant. The call should arrive within the next minute.</p>
+              </div>
+            {/if}
             {#if showVoiceAgent}
-              <p class="mt-2 font-semibold text-primary">Our AI agent is ready to talk with you now!</p>
+              <p class="mt-2 text-sm text-gray-700">Or talk to our AI agent instantly through your browser below:</p>
             {/if}
           </div>
         {/if}
@@ -214,16 +268,24 @@
         {/if}
       </form>
 
-      <!-- AI Voice Agent Section -->
+      <!-- AI Voice Agent Section (Web-based alternative) -->
       {#if showVoiceAgent}
         <div class="mt-8 animate-fade-in">
           <div class="bg-gradient-to-br from-primary/5 to-secondary-light/5 p-6 rounded-2xl border-2 border-primary/20">
             <div class="text-center mb-4">
               <h3 class="text-2xl font-bold text-gray-900 font-sans">
-                Talk to Our AI Agent Now
+                {#if outboundCallInitiated}
+                  Or Talk Through Your Browser
+                {:else}
+                  Talk to Our AI Agent Now
+                {/if}
               </h3>
               <p class="text-gray-600 mt-2">
-                Get instant answers about our services, pricing, and how we can help your business grow.
+                {#if outboundCallInitiated}
+                  Can't wait for the phone call? Start a conversation instantly through your browser.
+                {:else}
+                  Get instant answers about our services, pricing, and how we can help your business grow.
+                {/if}
               </p>
             </div>
             <VoiceAgent />
