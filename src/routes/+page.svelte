@@ -6,6 +6,7 @@
   import Pricing from '$lib/components/Pricing.svelte';
   import Contact from '$lib/components/Contact.svelte';
   import Footer from '$lib/components/Footer.svelte';
+  import PaymentModal from '$lib/components/PaymentModal.svelte';
 </script>
 
 <svelte:head>
@@ -53,7 +54,7 @@
       "description": "AI-powered digital marketing agency specializing in beauty industry marketing solutions",
       "url": "https://pharensai.com",
       "telephone": ["+27670374461", "+27602785621"],
-      "email": "cbd.pharen25@gmail.com",
+      "email": "pharen@pharensaiagency.online",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "ZA",
@@ -81,3 +82,6 @@
 </main>
 
 <Footer />
+
+<!-- Payment Modal -->
+<PaymentModal />

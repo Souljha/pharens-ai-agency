@@ -29,6 +29,8 @@
     "@tailwindcss/typography": "^0.5.16",
     "@vapi-ai/web": "^2.5.0",
     "axios": "^1.11.0",
+    "resend": "^6.2.2",
+    "svelte-paystack": "^0.2.2",
     "uuid": "^11.1.0"
   }
 }

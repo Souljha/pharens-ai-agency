@@ -96,3 +96,41 @@ export function resetCallState() {
   voiceCallMuted.set(false);
   voiceCallError.set(null);
 }
+
+// Payment state
+export const paymentModalOpen = writable(false);
+export const paymentProcessing = writable(false);
+export const paymentSuccess = writable(false);
+export const paymentError = writable(null);
+export const selectedPlan = writable(null);
+
+// Functions to manage payment state
+export function openPaymentModal(planDetails) {
+  selectedPlan.set(planDetails);
+  paymentModalOpen.set(true);
+}
+
+export function closePaymentModal() {
+  paymentModalOpen.set(false);
+  selectedPlan.set(null);
+}
+
+export function setPaymentProcessing(processing) {
+  paymentProcessing.set(processing);
+}
+
+export function setPaymentSuccess(success) {
+  paymentSuccess.set(success);
+}
+
+export function setPaymentError(error) {
+  paymentError.set(error);
+}
+
+export function resetPaymentState() {
+  paymentModalOpen.set(false);
+  paymentProcessing.set(false);
+  paymentSuccess.set(false);
+  paymentError.set(null);
+  selectedPlan.set(null);
+}

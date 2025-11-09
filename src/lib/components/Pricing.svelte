@@ -1,10 +1,11 @@
 <script>
   import { onMount } from 'svelte';
-  import { activeService, setActiveService } from '$lib/stores/ui.js';
-  
+  import { activeService, setActiveService, openPaymentModal } from '$lib/stores/ui.js';
+  import { getPlanDetails } from '$lib/utils/paystack.js';
+
   let pricingElement;
   let isVisible = false;
-  
+
   onMount(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -12,17 +13,32 @@
       },
       { threshold: 0.1 }
     );
-    
+
     if (pricingElement) {
       observer.observe(pricingElement);
     }
-    
+
     return () => {
       if (pricingElement) {
         observer.unobserve(pricingElement);
       }
     };
   });
+
+  // Handle plan selection and payment
+  function handlePlanSelect(planName, serviceType) {
+    const planDetails = getPlanDetails(serviceType, planName);
+
+    if (planDetails) {
+      openPaymentModal({
+        planName,
+        serviceType,
+        amount: planDetails.amount,
+        currency: planDetails.currency,
+        features: planDetails.features
+      });
+    }
+  }
 </script>
 
 <section id="pricing" class="py-20 md:py-24 bg-gray-50" bind:this={pricingElement}>
@@ -80,7 +96,12 @@
               <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Automated Booking Systems</li>
               <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Transparent ROI Reporting</li>
             </ul>
-            <a href="#contact" class="mt-8 block w-full text-center btn-secondary">Get Started</a>
+            <button
+              on:click={() => handlePlanSelect('Essential Boost', 'medspa')}
+              class="mt-8 block w-full text-center btn-secondary"
+            >
+              Get Started
+            </button>
           </div>
           <!-- Professional Growth -->
           <div class="card border-2 border-primary relative">
@@ -98,7 +119,12 @@
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Automated Booking Systems</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Transparent ROI Reporting</li>
             </ul>
-            <a href="#contact" class="mt-8 block w-full text-center btn-primary">Choose Plan</a>
+            <button
+              on:click={() => handlePlanSelect('Professional Growth', 'medspa')}
+              class="mt-8 block w-full text-center btn-primary"
+            >
+              Choose Plan
+            </button>
           </div>
           <!-- Elite Domination -->
           <div class="card">
@@ -112,7 +138,12 @@
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced Analytics & Insights</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Dedicated Account Manager</li>
             </ul>
-            <a href="#contact" class="mt-8 block w-full text-center btn-secondary">Get Started</a>
+            <button
+              on:click={() => handlePlanSelect('Elite Domination', 'medspa')}
+              class="mt-8 block w-full text-center btn-secondary"
+            >
+              Get Started
+            </button>
           </div>
         </div>
       </div>
@@ -139,7 +170,12 @@
               <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Advanced Retargeting</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>E-commerce Analytics</li>
             </ul>
-            <a href="#contact" class="mt-8 block w-full text-center btn-secondary">Get Started</a>
+            <button
+              on:click={() => handlePlanSelect('Starter Kit', 'ecommerce')}
+              class="mt-8 block w-full text-center btn-secondary"
+            >
+              Get Started
+            </button>
           </div>
           <!-- Growth Accelerator -->
           <div class="card border-2 border-primary relative">
@@ -157,7 +193,12 @@
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced Retargeting</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>E-commerce Analytics</li>
             </ul>
-            <a href="#contact" class="mt-8 block w-full text-center btn-primary">Choose Plan</a>
+            <button
+              on:click={() => handlePlanSelect('Growth Accelerator', 'ecommerce')}
+              class="mt-8 block w-full text-center btn-primary"
+            >
+              Choose Plan
+            </button>
           </div>
           <!-- Scale-Up Pro -->
           <div class="card">
@@ -171,7 +212,12 @@
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Conversion Rate Optimization</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Priority Support</li>
             </ul>
-            <a href="#contact" class="mt-8 block w-full text-center btn-secondary">Get Started</a>
+            <button
+              on:click={() => handlePlanSelect('Scale-Up Pro', 'ecommerce')}
+              class="mt-8 block w-full text-center btn-secondary"
+            >
+              Get Started
+            </button>
           </div>
         </div>
       </div>
