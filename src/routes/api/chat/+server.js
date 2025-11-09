@@ -65,7 +65,7 @@ function getFallbackResponse(message) {
   }
   
   if (lowerMessage.includes('contact') || lowerMessage.includes('phone') || lowerMessage.includes('email') || lowerMessage.includes('reach') || lowerMessage.includes('get in touch') || lowerMessage.includes('call')) {
-    return "You can reach Pharens AI through multiple channels: Call us on +27 67 037 4461 or +27 60 278 5621, or email us at cbd.pharen25@gmail.com. We're available to discuss your beauty marketing needs and provide consultations. How can we help grow your beauty business?";
+    return "You can reach Pharens AI through multiple channels: Call us on +27 67 037 4461 or +27 60 278 5621, or email us at pharen@pharensaiagency.online. We're available to discuss your beauty marketing needs and provide consultations. How can we help grow your beauty business?";
   }
   
   return "Hi! I'm your Pharens AI Assistant, specializing in beauty industry marketing. I can help with social media strategies, SEO optimization, content marketing, email campaigns, and growing your beauty business. I'm powered by your local qwen2:8b model for fast, private responses! What specific area would you like help with?";
@@ -125,7 +125,7 @@ IMPORTANT GUIDELINES:
 - When discussing services, emphasize how Pharens AI can help with digital marketing, social media, SEO, and brand development
 - Keep responses conversational but informative (2-3 sentences max)
 - ALWAYS use information from the knowledge base when available - it contains the most accurate and up-to-date information
-- For contact information, ALWAYS provide: Phone numbers +27 67 037 4461 or +27 60 278 5621, and email cbd.pharen25@gmail.com
+- For contact information, ALWAYS provide: Phone numbers +27 67 037 4461 or +27 60 278 5621, and email pharen@pharensaiagency.online
 
 ${context ? `KNOWLEDGE BASE CONTEXT (USE THIS INFORMATION FIRST):\n${context}\n` : ''}
 

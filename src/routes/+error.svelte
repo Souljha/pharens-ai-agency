@@ -72,7 +72,7 @@
 
     <!-- Support Info -->
     <div class="mt-12 text-white/60 text-sm">
-      <p>Need help? Contact us at <a href="mailto:cbd.pharen25@gmail.com" class="text-white/90 hover:text-white underline">cbd.pharen25@gmail.com</a></p>
+      <p>Need help? Contact us at <a href="mailto:pharen@pharensaiagency.online" class="text-white/90 hover:text-white underline">pharen@pharensaiagency.online</a></p>
     </div>
   </div>
 </div>
