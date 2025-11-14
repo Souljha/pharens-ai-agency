@@ -86,15 +86,16 @@
           <!-- Essential Boost -->
           <div class="card">
             <h4 class="text-2xl font-bold text-gray-900 font-sans">Essential Boost</h4>
-            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R6,500<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R2,500<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-2 text-md text-gray-600 font-semibold">+ R5,500 one-time setup</p>
             <p class="mt-2 text-md text-gray-500">For new or small clinics ready for consistent growth.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Targeted Ad Campaigns</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI-Powered Optimization</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Local SEO Dominance</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (100 calls/mo)</li>
-              <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Automated Booking Systems</li>
-              <li class="flex items-center gap-3 text-gray-400"><span class="text-gray-400">-</span>Transparent ROI Reporting</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>1 AI Voice Agent</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Custom landing page integration</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Appointment booking & scheduling</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Email notifications</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Basic call analytics</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Standard support (email)</li>
             </ul>
             <button
               on:click={() => handlePlanSelect('Essential Boost', 'medspa')}
@@ -109,15 +110,18 @@
               <span class="bg-primary text-white px-4 py-1 rounded-full text-sm font-bold font-sans">MOST POPULAR</span>
             </div>
             <h4 class="text-2xl font-bold text-gray-900 font-sans">Professional Growth</h4>
-            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R12,500<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R5,500<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-2 text-md text-gray-600 font-semibold">+ R9,000 one-time setup</p>
             <p class="mt-2 text-md text-gray-500">For established clinics aiming to dominate their local market.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Targeted Ad Campaigns</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI-Powered Optimization</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Local SEO Dominance</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (500 calls/mo)</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Automated Booking Systems</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Transparent ROI Reporting</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Up to 3 AI Voice Agents</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Full website integration</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced booking features</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>CRM integration (HubSpot, etc.)</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Custom voice training</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced analytics dashboard</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Priority support (phone & email)</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Multi-language support</li>
             </ul>
             <button
               on:click={() => handlePlanSelect('Professional Growth', 'medspa')}
@@ -129,14 +133,18 @@
           <!-- Elite Domination -->
           <div class="card">
             <h4 class="text-2xl font-bold text-gray-900 font-sans">Elite Domination</h4>
-            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R25,000<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R15,000<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-2 text-md text-gray-600 font-semibold">+ R25,000 one-time setup</p>
             <p class="mt-2 text-md text-gray-500">For market leaders seeking aggressive expansion.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>All Professional Features, plus:</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>AI Voice Agent (2000 calls/mo)</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Multi-Platform Strategy</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced Analytics & Insights</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Dedicated Account Manager</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Unlimited AI Voice Agents</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Complete custom web development</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Full API access & integrations</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>White-label solution</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Dedicated account manager</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Custom workflows & automations</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced security & compliance</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>24/7 premium support</li>
             </ul>
             <button
               on:click={() => handlePlanSelect('Elite Domination', 'medspa')}
@@ -160,7 +168,8 @@
           <!-- Starter Kit -->
           <div class="card">
             <h4 class="text-2xl font-bold text-gray-900 font-sans">Starter Kit</h4>
-            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R5,500<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R2,000<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-2 text-md text-gray-600 font-semibold">+ R5,000 one-time setup</p>
             <p class="mt-2 text-md text-gray-500">For new brands needing to build momentum and first sales.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Full-Funnel Ad Campaigns</li>
@@ -183,7 +192,8 @@
               <span class="bg-primary text-white px-4 py-1 rounded-full text-sm font-bold font-sans">BEST VALUE</span>
             </div>
             <h4 class="text-2xl font-bold text-gray-900 font-sans">Growth Accelerator</h4>
-            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R10,500<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R5,000<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-2 text-md text-gray-600 font-semibold">+ R8,000 one-time setup</p>
             <p class="mt-2 text-md text-gray-500">For growing brands ready to scale sales and ROAS.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Full-Funnel Ad Campaigns</li>
@@ -203,7 +213,8 @@
           <!-- Scale-Up Pro -->
           <div class="card">
             <h4 class="text-2xl font-bold text-gray-900 font-sans">Scale-Up Pro</h4>
-            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R18,000<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R12,000<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-2 text-md text-gray-600 font-semibold">+ R20,000 one-time setup</p>
             <p class="mt-2 text-md text-gray-500">For established brands aiming for market leadership.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>All Accelerator Features, plus:</li>
