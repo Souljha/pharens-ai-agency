@@ -117,7 +117,7 @@
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Up to 3 AI Voice Agents</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Full website integration</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced booking features</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>CRM integration (HubSpot, etc.)</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>CRM integration (GoHighLevel, etc.)</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Custom voice training</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced analytics dashboard</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Priority support (phone & email)</li>
@@ -144,7 +144,7 @@
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Dedicated account manager</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Custom workflows & automations</li>
               <li class="flex items-center gap-3"><span class="text-primary">✔</span>Advanced security & compliance</li>
-              <li class="flex items-center gap-3"><span class="text-primary">✔</span>24/7 premium support</li>
+              <li class="flex items-center gap-3"><span class="text-primary">✔</span>Full-Funnel Ad Campaigns</li>
             </ul>
             <button
               on:click={() => handlePlanSelect('Elite Domination', 'medspa')}
@@ -168,7 +168,7 @@
           <!-- Starter Kit -->
           <div class="card">
             <h4 class="text-2xl font-bold text-gray-900 font-sans">Starter Kit</h4>
-            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R2,000<span class="text-lg font-medium text-gray-500">/mo</span></p>
+            <p class="mt-4 text-5xl font-extrabold text-gray-900 font-sans">R3,000<span class="text-lg font-medium text-gray-500">/mo</span></p>
             <p class="mt-2 text-md text-gray-600 font-semibold">+ R5,000 one-time setup</p>
             <p class="mt-2 text-md text-gray-500">For new brands needing to build momentum and first sales.</p>
             <ul class="mt-8 space-y-4 text-lg text-gray-600">
