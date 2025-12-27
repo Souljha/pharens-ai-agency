@@ -49,6 +49,20 @@
     }
 
     try {
+      // Add custom CSS to position widget next to chatbot
+      const style = document.createElement('style');
+      style.id = 'retell-widget-positioning';
+      style.innerHTML = `
+        /* Position Retell widget to the left of chatbot */
+        retell-widget-bubble,
+        [id*="retell-widget"],
+        [class*="retell-widget"] {
+          right: 100px !important;
+          bottom: 24px !important;
+        }
+      `;
+      document.head.appendChild(style);
+
       // Create and append the Retell widget script
       const script = document.createElement('script');
       script.id = 'retell-widget';
@@ -68,8 +82,12 @@
       // Cleanup function
       return () => {
         const existingScript = document.getElementById('retell-widget');
+        const existingStyle = document.getElementById('retell-widget-positioning');
         if (existingScript) {
           existingScript.remove();
+        }
+        if (existingStyle) {
+          existingStyle.remove();
         }
       };
     } catch (error) {
@@ -90,3 +108,20 @@
     <p class="mt-1">Add your Retell credentials to .env to enable the widget.</p>
   </div>
 {/if}
+
+<style>
+  /* Position Retell widget to the left of the chatbot widget */
+  /* Target various possible Retell widget element names */
+  :global(retell-widget-bubble),
+  :global([id*="retell"]),
+  :global([class*="retell"]) {
+    right: 100px !important;
+    bottom: 24px !important;
+  }
+
+  /* More specific targeting for iframes that Retell might create */
+  :global(iframe[src*="retell"]) {
+    right: 100px !important;
+    bottom: 24px !important;
+  }
+</style>
