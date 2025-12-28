@@ -54,9 +54,8 @@
       style.id = 'retell-widget-positioning';
       style.innerHTML = `
         /* Position Retell widget to the left of chatbot */
-        retell-widget-bubble,
-        [id*="retell-widget"],
-        [class*="retell-widget"] {
+        #retell-fab,
+        .retell-fab {
           right: 100px !important;
           bottom: 24px !important;
         }
@@ -79,8 +78,51 @@
 
       console.log('Retell AI Widget loaded successfully');
 
+      // Use MutationObserver to watch for Retell widget and reposition it
+      const observer = new MutationObserver(() => {
+        const retellFab = document.getElementById('retell-fab') || document.querySelector('.retell-fab');
+        if (retellFab) {
+          // Force position to the left of chatbot
+          retellFab.style.setProperty('right', '100px', 'important');
+          retellFab.style.setProperty('bottom', '24px', 'important');
+          console.log('Retell widget repositioned to the left of chatbot');
+        }
+      });
+
+      // Start observing the body for changes
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+
+      // Also try to reposition immediately and with intervals as fallback
+      const repositionRetell = () => {
+        const retellFab = document.getElementById('retell-fab') || document.querySelector('.retell-fab');
+        if (retellFab) {
+          retellFab.style.setProperty('right', '100px', 'important');
+          retellFab.style.setProperty('bottom', '24px', 'important');
+          return true;
+        }
+        return false;
+      };
+
+      // Try repositioning every 100ms for 5 seconds
+      let attempts = 0;
+      const maxAttempts = 50;
+      const repositionInterval = setInterval(() => {
+        if (repositionRetell() || attempts >= maxAttempts) {
+          clearInterval(repositionInterval);
+          if (attempts < maxAttempts) {
+            console.log('Retell widget successfully repositioned');
+          }
+        }
+        attempts++;
+      }, 100);
+
       // Cleanup function
       return () => {
+        observer.disconnect();
+        clearInterval(repositionInterval);
         const existingScript = document.getElementById('retell-widget');
         const existingStyle = document.getElementById('retell-widget-positioning');
         if (existingScript) {
@@ -111,16 +153,9 @@
 
 <style>
   /* Position Retell widget to the left of the chatbot widget */
-  /* Target various possible Retell widget element names */
-  :global(retell-widget-bubble),
-  :global([id*="retell"]),
-  :global([class*="retell"]) {
-    right: 100px !important;
-    bottom: 24px !important;
-  }
-
-  /* More specific targeting for iframes that Retell might create */
-  :global(iframe[src*="retell"]) {
+  /* Target the specific Retell FAB (Floating Action Button) */
+  :global(#retell-fab),
+  :global(.retell-fab) {
     right: 100px !important;
     bottom: 24px !important;
   }
