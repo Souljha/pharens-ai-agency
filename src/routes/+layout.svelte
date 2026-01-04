@@ -2,7 +2,6 @@
   import '../app.css';
   import Chatbot from '$lib/components/Chatbot.svelte';
   import Analytics from '$lib/components/Analytics.svelte';
-  import RetellWidget from '$lib/components/RetellWidget.svelte';
 </script>
 
 <svelte:head>
@@ -16,6 +15,3 @@
 <slot />
 
 <Chatbot />
-
-<!-- Retell AI Voice Agent Widget (for course demonstration) -->
-<RetellWidget />
